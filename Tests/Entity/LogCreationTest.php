@@ -66,7 +66,15 @@ class FunctionalProductGroupRepositoryTest extends WebTestCase {
         $t2->setColor("red");
         $em->persist($tag);
         $p->addTag($t2);
-
         $em->flush();
+
+        $em->clear();
+
+        $newProduct = $em->getRepository("DCNDemoBundle:Product")->findOneBy([]);
+        $this->assertEquals(2, count($newProduct->getTags()));
+
+        $logLines = $em->getRepository("DCNDemoBundle:LogLine")->findAll();
+        $this->assertEquals(3, count($logLines));
+
     }
 }
