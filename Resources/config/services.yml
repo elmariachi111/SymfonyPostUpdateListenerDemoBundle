@@ -1,0 +1,8 @@
+services:
+    meta.listener:
+         class: DCN\DemoBundle\EventListener\LoggingListener
+         arguments: [ @logger ]
+         tags:
+             - { name: doctrine.event_listener, event: postPersist }
+             - { name: doctrine.event_listener, event: preUpdate }
+             - { name: doctrine.event_listener, event: postUpdate }
