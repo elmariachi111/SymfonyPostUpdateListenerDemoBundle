@@ -35,6 +35,11 @@ class Product
      */
     private $price;
 
+    /**
+     * @ORM\ManyToMany(inversedBy="product", targetEntity="DCN\DemoBundle\Entity\Tag", cascade={"all"})
+     * @var ArrayCollection
+     * */
+    private $tags;
 
     /**
      *
@@ -46,6 +51,7 @@ class Product
 
     public function __construct() {
         $this->logLines = new ArrayCollection();
+        $this->tags = new ArrayCollection();
     }
 
     /**
@@ -120,6 +126,23 @@ class Product
     {
         return $this->logLines;
     }
+
+    /**
+     * @param Tag $tag
+     */
+    public function addTag($tag)
+    {
+        $this->tags->add($tag);
+    }
+
+    /**
+     * @return \Doctrine\Common\Collections\ArrayCollection
+     */
+    public function getTags()
+    {
+        return $this->tags;
+    }
+
 
 
 }
