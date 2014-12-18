@@ -36,6 +36,25 @@ class Product
     private $price;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="long_text", type="text")
+     */
+    private $longText;
+
+    /**
+     * @var string
+     * @ORM\Column(name="url", type="string", length=255)
+     */
+    private $url;
+
+    /**
+     * @var string
+     * @ORM\Column(name="image_url", type="string", length=255, nullable=true)
+     */
+    private $imageUrl;
+
+    /**
      * @ORM\ManyToMany(inversedBy="product", targetEntity="DCN\DemoBundle\Entity\Tag", cascade={"all"})
      * @var ArrayCollection
      * */
@@ -142,6 +161,56 @@ class Product
     {
         return $this->tags;
     }
+
+    /**
+     * @param string $longText
+     */
+    public function setLongText($longText)
+    {
+        $this->longText = $longText;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLongText()
+    {
+        return $this->longText;
+    }
+
+    /**
+     * @param string $imageUrl
+     */
+    public function setImageUrl($imageUrl)
+    {
+        $this->imageUrl = $imageUrl;
+    }
+
+    /**
+     * @return string
+     */
+    public function getImageUrl()
+    {
+        return $this->imageUrl;
+    }
+
+    /**
+     * @param string $url
+     */
+    public function setUrl($url)
+    {
+        $this->url = $url;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUrl()
+    {
+        return $this->url;
+    }
+
+
 
 
 
